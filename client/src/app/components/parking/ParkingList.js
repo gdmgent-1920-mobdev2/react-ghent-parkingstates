@@ -21,7 +21,7 @@ const ParkingList = () => {
 
         const timerId = setInterval(() => fetchData(), 30000);
         return () => clearInterval(timerId);
-    }, []);
+    }, [parkings]);
 
     const getParkingstatesFromApi = async () => {
         const GHENT_PARKINGSTATES_URL = 'https://datatank.stad.gent/4/mobiliteit/bezettingparkingsrealtime.json';
@@ -31,12 +31,19 @@ const ParkingList = () => {
         return jsonData;
     }
 
+    const getPrevParking = (id) => {
+        if (prevParkings) {
+            return prevParkings.find((prevParking) => prevParking.id === id);
+        }
+        return null;
+    }
+
     return (
         <ul className="parking-list">
             {
                 !!parkings ? (
                     parkings.map(parking =>
-                        <ParkingListItem key={parking.id} parking={parking} prevParking={!!prevParkings ?prevParkings.find((prevParking) => prevParking.id == parking.id) : null} />
+                        <ParkingListItem key={parking.id} parking={parking} prevParking={getPrevParking(parking.id)} />
                     )
                 ) : (
                     <div>Loading...</div>
