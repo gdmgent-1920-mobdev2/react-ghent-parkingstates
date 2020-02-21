@@ -6,10 +6,12 @@ import './ParkingList.css';
 
 const ParkingList = () => {
     const [parkings, setParkings] = useState(null);
+    const [prevParkings, setPrevParkings] = useState(null);
 
     useEffect(() => {
         async function fetchData () {
             const data = await getParkingstatesFromApi();
+            setPrevParkings(parkings);
             setParkings(data);
         }
 
@@ -34,7 +36,7 @@ const ParkingList = () => {
             {
                 !!parkings ? (
                     parkings.map(parking =>
-                        <ParkingListItem key={parking.id} parking={parking} />
+                        <ParkingListItem key={parking.id} parking={parking} prevParking={!!prevParkings ?prevParkings.find((prevParking) => prevParking.id == parking.id) : null} />
                     )
                 ) : (
                     <div>Loading...</div>
