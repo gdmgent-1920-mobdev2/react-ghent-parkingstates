@@ -1,0 +1,65 @@
+
+.parking-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+  
+  .parking-list__item {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    align-items: center;
+    justify-items: center;
+    justify-content: space-between;
+  
+    padding: calc(var(--spacer) / 2);
+    background: var(--color-gray-lightest);
+  
+    cursor: hand;
+    cursor: pointer;
+  }
+  
+  .parking-list__item:hover,
+  .parking-list__item:nth-of-type(even):hover {
+    background: var(--color-gray);
+  }
+  
+  .parking-list__item:nth-of-type(even) {
+    background: var(--color-gray-light);
+  }
+  
+  .parking-list__item .name  {
+    flex: 1;
+    font-size: 1.4rem;
+    margin: 0;
+  }
+  
+  .parking-list__item .trend {
+    font-size: 2rem;
+    font-weight: 900;
+    margin-right: var(--spacer);
+  
+    text-align: center;
+  }
+  
+  .parking-list__item .capacity {
+    font-size: 1.6rem;
+    font-weight: 600;
+    width: 80px;
+  
+    text-align: center;
+  }
+  
+  .parking-list__item .capacity--alert {
+    color: var(--color-red);
+  }
+  
+  .parking-list__item .capacity--warning {
+    color: var(--color-orange);
+  }
+  
+  .parking-list__item .capacity--success {
+    color: var(--color-green);
+  }
+  
